@@ -13,8 +13,8 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     passportSpotify=require('passport-spotify'),
-    SpotifyStrategy = require('./spotifyAuth/lib/passport-spotify/index').Strategy,
-    keys = require('./keys.js'),
+    SpotifyStrategy = require('./server/spotifyAuth/lib/passport-spotify/index').Strategy,
+    keys = require('./server/keys.js'),
     clientID = keys.clientID,
     clientSecret = keys.clientSecret,
     spotifyApi = new SpotifyWebApi({
@@ -23,7 +23,7 @@ var express = require('express'),
       redirectUri : 'https://jamm-city.elasticbeanstalk.com/callback'
     });
 
-    app.use(express.static(__dirname + '/../client'));
+    app.use(express.static(__dirname + '/client'));
     passport.serializeUser(function(user, done) {
       console.log('user ', user)
       done(null, user);
@@ -54,7 +54,7 @@ var express = require('express'),
       console.log('req session obj', req.session);
       next();
     })
-  require('./spotifyAuth/spotifyController.js')(app, express, passport, spotifyApi);
+  require('./server/spotifyAuth/spotifyController.js')(app, express, passport, spotifyApi);
 
   console.log('Jam City on port ', port);
   app.listen(process.env.PORT || port);

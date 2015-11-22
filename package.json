@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
-    "start": "npm start"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "body-parser": "^1.12.4",
