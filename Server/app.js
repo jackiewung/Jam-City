@@ -3,7 +3,7 @@
  */
 
  'use strict';
-var express = require('express'),  
+var express = require('express'),
     app = express(),
     port = 8008,
     SpotifyWebApi = require('spotify-web-api-node'),
@@ -20,7 +20,7 @@ var express = require('express'),
     spotifyApi = new SpotifyWebApi({
       clientId : clientID,
       clientSecret : clientSecret,
-      redirectUri : 'http://localhost:8008/callback'
+      redirectUri : 'https://jamm-city.elasticbeanstalk.com/callback'
     });
 
     app.use(express.static(__dirname + '/../client'));
@@ -36,7 +36,7 @@ var express = require('express'),
     passport.use(new SpotifyStrategy({
       clientID: clientID,
       clientSecret: clientSecret,
-      callbackURL: 'http://localhost:8008/callback'
+      callbackURL: 'https://jamm-city.elasticbeanstalk.com/callback'
     }, function(accessToken, refreshToken, profile, done) {
         process.nextTick(function () {
           spotifyApi.setAccessToken(accessToken);
@@ -57,5 +57,5 @@ var express = require('express'),
   require('./spotifyAuth/spotifyController.js')(app, express, passport, spotifyApi);
 
   console.log('Jam City on port ', port);
-  app.listen(port);
+  app.listen(process.env.PORT || port);
   exports = module.exports = app;
