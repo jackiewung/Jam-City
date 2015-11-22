@@ -1,0 +1,39 @@
+
+#artists {
+  overflow: scroll;
+  position: fixed;
+  height: 100%;
+  width: 33%;
+  border-right-width: 0px;
+  border-left-width: 0px;
+}
+
+.artistList{
+  margin-left: 15px;
+  margin-top: 4px;
+
+}
+
+.artist{
+  font-size: 19px;
+  color: black;
+  font-weight: 200;
+/*  transition: font-size 0.3s ease-in;*/
+}
+.artist:hover{
+  cursor: pointer;
+  color:#A0A0A1;
+ /* text-decoration: none;
+  font-size: 35px;
+  transition: font-size 0.3s ease-out;*/
+}
+.artist:focus{
+  text-decoration: none;
+}
+
+.artistInfo{
+  width: 600px;
+  margin:auto;
+  margin-top: 38px;
+  text-align: center;
+}
